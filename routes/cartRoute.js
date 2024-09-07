@@ -1,8 +1,8 @@
-import exprress from "express";
+import express from "express";
 import { Cart } from "../models/cartModel.js";
 import { Item } from "../models/itemsModel.js";
 
-const router = exprress.Router();
+const router = express.Router();
 
 //delete cart items
 router.put("/:userId/:id", async (request, response) => {
