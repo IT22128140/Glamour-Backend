@@ -34,7 +34,7 @@ import cors from "cors";
 
 
 //Ridmi
-
+import deliveryInfoRoute from './routes/deliveryInfoRoute.js';
 
 
 
@@ -108,7 +108,7 @@ app.get("/", (req, res) => {
 
 
 //Ridmi
-
+app.use("/deliveryInfo", deliveryInfoRoute);
 
 
 
