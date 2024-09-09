@@ -49,7 +49,7 @@ import cors from "cors";
 
 
 //Hiranya
-
+import bodyMeasurementRoute from './routes/bodyMeasurementRoute.js';
 
 
 
@@ -122,7 +122,7 @@ app.get("/", (req, res) => {
 
 
 //Hiranya
-
+app.use('/measurements', bodyMeasurementRoute);
 
 
 
