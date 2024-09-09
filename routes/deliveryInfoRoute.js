@@ -75,7 +75,7 @@ router.put('/:id', async (request, response) => {
     }
 });
 
-//delete delivery details
+//Route for delete delivery info
 router.delete ('/:id', async (request, response) => {
     try {
         const { id } = request.params;
