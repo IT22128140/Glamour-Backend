@@ -34,7 +34,7 @@ import cartRoute from "./routes/cartRoute.js";
 
 
 //Ridmi
-
+import deliveryInfoRoute from './routes/deliveryInfoRoute.js';
 
 
 
@@ -108,7 +108,7 @@ app.use("/cart", cartRoute);
 
 
 //Ridmi
-
+app.use("/deliveryInfo", deliveryInfoRoute);
 
 
 
