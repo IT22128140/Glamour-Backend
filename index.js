@@ -34,7 +34,7 @@ import cusItemsRoute from "./routes/cusItemsRoute.js";
 
 
 //Ridmi
-
+import deliveryInfoRoute from './routes/deliveryInfoRoute.js';
 
 
 
@@ -108,7 +108,7 @@ app.use("/cusItems", cusItemsRoute);
 
 
 //Ridmi
-
+app.use("/deliveryInfo", deliveryInfoRoute);
 
 
 
