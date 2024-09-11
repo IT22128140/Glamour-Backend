@@ -19,7 +19,7 @@ import cartRoute from "./routes/cartRoute.js";
 
 
 //Sandithi
-
+import reviewRoute from "./routes/reviewRoute.js";
 
 
 
@@ -93,7 +93,7 @@ app.use("/cart", cartRoute);
 
 
 //Sandithi
-
+app.use("/reviews", reviewRoute);
 
 
 
