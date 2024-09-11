@@ -4,16 +4,16 @@ import {Item} from "../models/itemsModel.js";
 const router = exprress.Router();
 
 //get items by newandtrending
-router.get("/trending", async (request, response) => {
-  try {
-    const items = await Item.find({ trending: true });
+// router.get("/trending", async (request, response) => {
+//   try {
+//     const items = await Item.find({ trending: true });
 
-    return response.status(200).json(items);
-  } catch (error) {
-    console.log(error.message);
-    response.status(500).send({ message: error.message });
-  }
-});
+//     return response.status(200).json(items);
+//   } catch (error) {
+//     console.log(error.message);
+//     response.status(500).send({ message: error.message });
+//   }
+// });
 //create item
 router.post("/", async (request, response) => {
   try {
