@@ -6,7 +6,7 @@ import cors from "cors";
 //Maneth
 import itemsRoute from "./routes/itemsRoute.js";
 import cartRoute from "./routes/cartRoute.js";
-
+import cusItemsRoute from "./routes/cusItemsRoute.js";
 
 
 
@@ -66,10 +66,10 @@ import deliveryInfoRoute from './routes/deliveryInfoRoute.js';
 
 const app = express();
 
+app.use(express.json({limit: '10mb'}));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(express.json());
-
 app.use(cors());
-
 app.get("/", (req, res) => {
   console.log(req);
   return res.status(234).send("Connection Successful!");
@@ -80,7 +80,7 @@ app.get("/", (req, res) => {
 //Maneth
 app.use("/items", itemsRoute);
 app.use("/cart", cartRoute);
-
+app.use("/cusItems", cusItemsRoute);
 
 
 

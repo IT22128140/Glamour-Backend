@@ -41,6 +41,10 @@ const itemSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
+  stock: {
+    type: Number,
+    required: true
+  },
   colors: [
     {
       type: String,

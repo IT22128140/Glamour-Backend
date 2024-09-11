@@ -4,29 +4,32 @@ import {Item} from "../models/itemsModel.js";
 const router = exprress.Router();
 
 //get items by newandtrending
-router.get("/trending", async (request, response) => {
-  try {
-    const items = await Item.find({ trending: true });
+// router.get("/trending", async (request, response) => {
+//   try {
+//     const items = await Item.find({ trending: true });
 
-    return response.status(200).json(items);
-  } catch (error) {
-    console.log(error.message);
-    response.status(500).send({ message: error.message });
-  }
-});
+//     return response.status(200).json(items);
+//   } catch (error) {
+//     console.log(error.message);
+//     response.status(500).send({ message: error.message });
+//   }
+// });
 //create item
 router.post("/", async (request, response) => {
   try {
     if (
       !request.body.productId ||
       !request.body.name ||
+      !request.body.description ||
       !request.body.minprice ||
       !request.body.maxprice ||
       !request.body.salesdifference ||
       !request.body.priceincrease ||
       !request.body.category ||
-      !request.body.description ||
       !request.body.image ||
+      !request.body.trending ||
+      !request.body.stock ||
+      !request.body.colors ||
       !request.body.sizes
     ) {
       return response.status(400).send({
@@ -37,15 +40,16 @@ router.post("/", async (request, response) => {
       productId: request.body.productId,
       name: request.body.name,
       description: request.body.description,
-      minprice: request.body.price,
+      minprice: request.body.minprice,
       maxprice: request.body.maxprice,
       salesdifference: request.body.salesdifference,
       priceincrease: request.body.priceincrease,
       category: request.body.category,
       image: request.body.image,
-      colors: request.body.colors,
-      sizes: request.body.sizes,
       trending: request.body.trending,
+      stock: request.body.stock,
+      colors: request.body.colors,
+      sizes: request.body.sizes
     };
 
     const item = await Item.create(newItem);
