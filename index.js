@@ -19,7 +19,7 @@ import cusItemsRoute from "./routes/cusItemsRoute.js";
 
 
 //Sandithi
-
+import reviewRoute from "./routes/reviewRoute.js";
 
 
 
@@ -93,7 +93,7 @@ app.use("/cusItems", cusItemsRoute);
 
 
 //Sandithi
-
+app.use("/reviews", reviewRoute);
 
 
 
