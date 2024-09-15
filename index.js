@@ -4,8 +4,8 @@ import mongoose from "mongoose";
 import cors from "cors";
 
 //Maneth
-
-
+import itemsRoute from "./routes/itemsRoute.js";
+import cartRoute from "./routes/cartRoute.js";
 
 
 
@@ -78,8 +78,8 @@ app.get("/", (req, res) => {
 
 
 //Maneth
-
-
+app.use("/items", itemsRoute);
+app.use("/cart", cartRoute);
 
 
 
