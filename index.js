@@ -49,7 +49,7 @@ import deliveryInfoRoute from './routes/deliveryInfoRoute.js';
 
 
 //Hiranya
-
+import bodyMeasurementRoute from './routes/bodyMeasurementRoute.js';
 
 
 
@@ -122,7 +122,7 @@ app.use("/deliveryInfo", deliveryInfoRoute);
 
 
 //Hiranya
-
+app.use('/measurements', bodyMeasurementRoute);
 
 
 
