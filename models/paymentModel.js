@@ -26,6 +26,10 @@ const paymentSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        totalPay: {
+            type: Number,
+            required: true,
+        },
         slip: {
             type: String,
             required: true,
