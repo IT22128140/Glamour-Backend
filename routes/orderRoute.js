@@ -35,26 +35,32 @@ router.post("/", async (request, response) => {
         if (
             !request.body.userId ||
             !request.body.products ||
-            !request.body.deliveryInfo ||
+            !request.body.deliveryInfo || 
             !request.body.total ||
             !request.body.paymentId
         ) {
             return response.status(400).send({ message: "All fields are required" });
         }
+
+        // Create a new order
         const newOrder = {
             userId: request.body.userId,
-            products: request.body.products,
+            products: request.body.products.map(product => ({
+                product: product.product, 
+                quantity: product.quantity,
+                color: product.color,
+                size: product.size,
+            })),
             deliveryInfo: request.body.deliveryInfo,
             total: request.body.total,
             paymentId: request.body.paymentId,
         };
 
         const order = await Order.create(newOrder);
-
         return response.status(201).send(order);
-    }catch(error) {
+    } catch (error) {
         console.log(error.message);
-        response.status(500).send({ message: error.message});
+        response.status(500).send({ message: error.message });
     }
 });
 
@@ -66,7 +72,7 @@ router.get('/:userId', async (request, response) => {
         const order = await Order.find({ userId: userId });
 
         return response.status(200).send(order);
-    }catch(error){
+    } catch (error) {
         console.log(error.message);
         response.status(500).send({ message: error.message });
     }
@@ -80,12 +86,12 @@ router.put('/:id', async (request, response) => {
         const result = await Order.findByIdAndUpdate(userId, request.body);
 
         if (!result) {
-            return response.status(400).send({message: "Order not found"});
+            return response.status(400).send({ message: "Order not found" });
         }
-        return response.status(200).send({message: "Order updated successfully"});
-    }catch (error) {
+        return response.status(200).send({ message: "Order updated successfully" });
+    } catch (error) {
         console.log(error.message);
-        response.status(500).send({message: error.message});
+        response.status(500).send({ message: error.message });
     }
 });
 
