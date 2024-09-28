@@ -64,7 +64,7 @@ const sendPaymentSuccessEmail = async (email, paymentDetails) => {
         subject: 'Payment Confirmation',
         text: `Dear ${paymentDetails.firstName} ${paymentDetails.lastName}, your payment was successful!`,
         html: `<p>Dear <b>${paymentDetails.firstName} ${paymentDetails.lastName}</b>,</p>
-               <p>Your payment of<b>${paymentDetails.totalPay}</b> for <b>${paymentDetails.bank}</b> was successful. We have received your payment slip.</p>
+               <p>Your payment of <b>Rs. ${paymentDetails.totalPay}.00</b> for <b>${paymentDetails.bank}</b> was successful. We have received your payment slip.</p>
                <p>Thank you for your order!</p>`,
         attachments: [
             {
