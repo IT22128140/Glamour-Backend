@@ -33,6 +33,7 @@ router.put("/:userId/:id", async (request, response) => {
   }
 });
 
+//update quantity of item in cart
 router.put("/minus/:userId/:id", async (request, response) => {
   try {
     const { id } = request.params;
@@ -68,19 +69,38 @@ router.put("/minus/:userId/:id", async (request, response) => {
   }
 });
 
-router.put("/plus/:userId/:id", async (request, response) => {
+//update quantity of item in cart
+router.put("/plus/:userId/:id/:productId", async (request, response) => {
   try {
     const { id } = request.params;
     const { userId } = request.params;
+    const { productId } = request.params;
 
     let cart = await Cart.findOne({ userId: userId });
+    let item = await Item.findOne({ _id: productId });
 
+    if (!item) {
+      return response.status(400).send({
+        message: "Item not found",
+      });
+    }
     if (!cart) {
       response.status(404).send({ message: "Cart not found." });
       return;
     }
 
     let itemIndex = cart.items.findIndex((p) => p._id == id);
+
+    if(item.stock < cart.items[itemIndex].quantity + 1){
+      return response.status(400).send({
+        message: "Quantity not available",
+      });
+    }
+    if(5 < cart.items[itemIndex].quantity + 1){
+      return response.status(400).send({
+        message: "You can only buy 5 items",
+      });
+    }
 
     if (itemIndex !== -1) {
       let productItem = cart.items[itemIndex];
@@ -117,6 +137,11 @@ router.post("/:userId", async (request, response) => {
       });
     }
 
+    if (item.stock < quantity) {
+      return response.status(400).send({
+        message: "Quantity not available",
+      });
+    }
     //if cart exists for user
     if (cart) {
       let itemIndex = cart.items.findIndex(
@@ -180,7 +205,6 @@ router.get("/:userId", async (request, response) => {
             },
           },
         ]);
-        console.log(sales);
 
         const totalQuantity = sales.length > 0 ? sales[0].totalQuantity : 0;
         const priceChanged =
@@ -200,6 +224,29 @@ router.get("/:userId", async (request, response) => {
   } catch (error) {
     console.log(error.message);
     response.status(500).send({ message: error.message });
+  }
+});
+
+// Delete all items in the cart for a given user
+router.delete('/:userId', async (req, res) => {
+  try {
+      const { userId } = req.params;
+
+      // Find the cart for the user
+      let cart = await Cart.findOne({ userId: userId });
+
+      if (!cart) {
+          return res.status(404).send({ message: 'Cart not found.' });
+      }
+
+      // Clear all items from the cart
+      cart.items = [];
+      await cart.save();
+
+      return res.status(200).send({ message: 'Cart cleared successfully.' });
+  } catch (error) {
+      console.log('Error clearing the cart: ', error);
+      return res.status(500).send({ message: 'Internal server error.' });
   }
 });
 

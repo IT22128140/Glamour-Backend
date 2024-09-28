@@ -34,4 +34,13 @@ const cartSchema = new mongoose.Schema(
   }
 );
 
+const validateCart = async (cart) => {
+  for (let item of cart.items) {
+    const product = await Item.findById(item.product);
+    if (!product) return false;
+    if (product.stock < item.quantity) return false;
+  }
+  return true;
+}
+
 export const Cart = mongoose.model("Cart", cartSchema);
