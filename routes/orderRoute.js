@@ -79,7 +79,7 @@ router.get('/:userId', async (request, response) => {
 });
 
 //Route for update order
-router.put('/:id', async (request, response) => {
+router.put('/:userId', async (request, response) => {
     try {
         const { userId } = request.params;
 
