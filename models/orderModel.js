@@ -9,21 +9,19 @@ const orderSchema = new mongoose.Schema(
         products: [
             {
                 product: {
-                    type: mongoose.Schema.Types.ObjectId,
-                    ref: "Item",
+                    type: String,
+                    required: true,
+                },
+                color: {
+                    type: String,
+                    required: true,
+                },
+                size: {
+                    type: String,
                     required: true,
                 },
                 quantity: {
                     type: Number,
-                    required: true,
-                    min: [1, "Quantity can not be less then 1."],
-                },
-                color: {
-                    type: String,
-                    required: false,
-                },
-                size: {
-                    type: String,
                     required: true,
                 },
             },
