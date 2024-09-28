@@ -7,6 +7,12 @@ const measurementSchema = new mongoose.Schema(
             required: true,
         },
 
+        UniqueName: {
+            type: String,
+            required: true,
+            unique: true,
+        },
+
         Gender: {
             type: String,
             required: true,

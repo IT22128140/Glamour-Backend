@@ -35,8 +35,8 @@ import reviewRoute from "./routes/reviewRoute.js";
 
 //Ridmi
 import deliveryInfoRoute from './routes/deliveryInfoRoute.js';
-
-
+import orderRoute from './routes/orderRoute.js';
+import paymentRoute from './routes/paymentRoute.js';
 
 
 
@@ -111,8 +111,8 @@ app.use("/reviews", reviewRoute);
 
 //Ridmi
 app.use("/deliveryInfo", deliveryInfoRoute);
-
-
+app.use("/orders", orderRoute);
+app.use("/payment", paymentRoute);
 
 
 
