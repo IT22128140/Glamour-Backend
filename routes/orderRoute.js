@@ -7,8 +7,8 @@ const router = express.Router();
 router.get("/ongoing", async (request, response) => {
     try {
         const orders = await Order.find({
-            status: { $nin: ["Delivered", "Canceled"] },  //neither "Delivered" nor "Cancelled"
-        });
+            status: { $nin: ["Delivered", "Canceled", "Refunded"] },  //neither "Delivered" nor "Cancelled" nor "Refunded"
+        }).populate("products.product");
         return response.status(200).json(orders);
     } catch (error) {
         console.log(error.message);
@@ -20,8 +20,21 @@ router.get("/ongoing", async (request, response) => {
 router.get("/completed", async (request, response) => {
     try {
         const orders = await Order.find({
-            $or: [{ status: "Delivered" }, { status: "Canceled" }],  //either "Delivered" or "Cancelled"
-        });
+            $or: [{ status: "Delivered" }],  //"Delivered"
+        }).populate("products.product");;
+        return response.status(200).json(orders);
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({ message: error.message });
+    }
+});
+
+//Route to get all canceled orders
+router.get("/canceled", async (request, response) => {
+    try {
+        const orders = await Order.find({
+            $or: [{ status: "Canceled" }, { status: "Refunded" }],  //either "Cancelled" or "Refunded"
+        }).populate("products.product");;
         return response.status(200).json(orders);
     } catch (error) {
         console.log(error.message);
@@ -79,7 +92,7 @@ router.get('/:userId', async (request, response) => {
 });
 
 //Route for update order
-router.put('/:id', async (request, response) => {
+router.put('/:userId', async (request, response) => {
     try {
         const { userId } = request.params;
 
@@ -89,6 +102,21 @@ router.put('/:id', async (request, response) => {
             return response.status(400).send({ message: "Order not found" });
         }
         return response.status(200).send({ message: "Order updated successfully" });
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({ message: error.message });
+    }
+});
+
+// Route to get all the order within a month
+router.get("/monthly", async (request, response) => {
+    try {
+        const orders = await Order.find({
+            createdAt: {
+                $gte: new Date(new Date().setDate(new Date().getDate() - 30)),
+            },
+        }).populate("products.product");
+        return response.status(200).json(orders);
     } catch (error) {
         console.log(error.message);
         response.status(500).send({ message: error.message });
