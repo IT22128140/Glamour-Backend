@@ -1,12 +1,12 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import Joi from "joi";
-import { User } from "../models/userModel.js";
+import { Emp } from "../models/empModel.js";
 import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
-router.post('/auth', async (req, res) => {
+router.post('/empAuth', async (req, res) => {
 	const token = req.body.token;
 	if (!token) {
 	  return res.json({ status: false });
@@ -16,9 +16,9 @@ router.post('/auth', async (req, res) => {
 	  if (err) {
 		return res.json({ status: false });
 	  } else {
-		const user = await User.findById(data._id);  // Use data._id if you set _id in the token payload
-		if (user) {
-		  return res.json({ status: true, userID: user._id });
+		const emp = await Emp.findById(data._id);  // Use data._id if you set _id in the token payload
+		if (emp) {
+		  return res.json({ status: true, empID: emp._id });
 		} else {
 		  return res.json({ status: false });
 		}
@@ -32,16 +32,16 @@ router.post("/", async (request, response) => {
 		// if (error) {
 		// 	return response.status(400).send({ message: error.details[0].message });
 		// }
-		const user = await User.findOne({ email: request.body.email });
-		if (!user) {
+		const emp = await Emp.findOne({ email: request.body.email });
+		if (!emp) {
 			return response.status(401).send({ message: "Invalid Email or Password" });
 		}
 
-		const validPassword = await bcrypt.compare(request.body.password, user.password);
+		const validPassword = await bcrypt.compare(request.body.password, emp.password);
 		if (!validPassword) {
 			return response.status(401).send({ message: "Invalid Email or Password" });
 		}
-		const token = user.generateAuthToken();
+		const token = emp.generateAuthToken();
 		return response.status(200).send({ token: token, message: "Logged in successfully" });
 	} catch (error) {
 		console.log(error.message);
@@ -54,9 +54,9 @@ router.get('/:id', async (request, response) => {
       
       const id = request.params.id;
   
-      const profileInfo = await User.findById(id);
+      const adminprofileInfo = await Emp.findById(id);
   
-      response.status(200).json(profileInfo);
+      response.status(200).json(adminprofileInfo);
     } catch (error) {
       console.error(error);
       response.status(500).json({ message: 'Server Error' });
@@ -70,5 +70,6 @@ const validate = (data) => {
 	});
 	return schema.validate(data);
 };
+
 
 export default router;
