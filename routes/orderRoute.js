@@ -1,5 +1,6 @@
 import express from "express";
 import { Order } from "../models/orderModel.js";
+import { Item } from "../models/itemsModel.js";
 
 const router = express.Router();
 
@@ -47,6 +48,8 @@ router.post("/", async (request, response) => {
             userId: request.body.userId,
             products: request.body.products.map(product => ({
                 product: product.product, 
+                name: product.name,
+                price: product.price,
                 quantity: product.quantity,
                 color: product.color,
                 size: product.size,
