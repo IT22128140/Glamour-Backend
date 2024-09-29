@@ -227,4 +227,27 @@ router.get("/:userId", async (request, response) => {
   }
 });
 
+// Delete all items in the cart for a given user
+router.delete('/:userId', async (req, res) => {
+  try {
+      const { userId } = req.params;
+
+      // Find the cart for the user
+      let cart = await Cart.findOne({ userId: userId });
+
+      if (!cart) {
+          return res.status(404).send({ message: 'Cart not found.' });
+      }
+
+      // Clear all items from the cart
+      cart.items = [];
+      await cart.save();
+
+      return res.status(200).send({ message: 'Cart cleared successfully.' });
+  } catch (error) {
+      console.log('Error clearing the cart: ', error);
+      return res.status(500).send({ message: 'Internal server error.' });
+  }
+});
+
 export default router;
