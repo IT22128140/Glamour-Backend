@@ -52,6 +52,8 @@ import paymentRoute from './routes/paymentRoute.js';
 import bodyMeasurementRoute from './routes/bodyMeasurementRoute.js';
 import usersRoute from './routes/usersRoute.js';
 import authRoute from './routes/auth.js';
+import empRoute from './routes/empRoute.js';
+import empAuthRoute from './routes/empAuth.js';
 
 
 
@@ -127,6 +129,8 @@ app.use("/payment", paymentRoute);
 app.use('/measurements', bodyMeasurementRoute);
 app.use('/users', usersRoute);
 app.use('/login', authRoute);
+app.use('/emps', empRoute);
+app.use('/empLogin', empAuthRoute);
 
 
 
