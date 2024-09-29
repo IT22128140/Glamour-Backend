@@ -2,7 +2,7 @@ import express from "express";
 import { PORT, MONGO_URI } from "./config.js";
 import mongoose from "mongoose";
 import cors from "cors";
-
+import dotenv from 'dotenv';
 //Maneth
 import itemsRoute from "./routes/itemsRoute.js";
 import cartRoute from "./routes/cartRoute.js";
@@ -50,6 +50,8 @@ import paymentRoute from './routes/paymentRoute.js';
 
 //Hiranya
 import bodyMeasurementRoute from './routes/bodyMeasurementRoute.js';
+import usersRoute from './routes/usersRoute.js';
+import authRoute from './routes/auth.js';
 
 
 
@@ -65,7 +67,7 @@ import bodyMeasurementRoute from './routes/bodyMeasurementRoute.js';
 
 
 const app = express();
-
+dotenv.config();
 app.use(express.json({limit: '10mb'}));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(express.json());
@@ -123,6 +125,8 @@ app.use("/payment", paymentRoute);
 
 //Hiranya
 app.use('/measurements', bodyMeasurementRoute);
+app.use('/users', usersRoute);
+app.use('/login', authRoute);
 
 
 
