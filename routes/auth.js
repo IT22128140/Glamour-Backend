@@ -5,7 +5,6 @@ import { User } from "../models/userModel.js";
 import jwt from "jsonwebtoken";
 
 const router = express.Router();
-
 router.post('/auth', async (req, res) => {
 	const token = req.body.token;
 	if (!token) {
