@@ -44,6 +44,19 @@ router.post('/:userId', async (request, response) => {
     }
 });
 
+router.get('/delivery/:deliveryId', async(request,response) => {
+    try {
+        const { deliveryId } = request.params;
+
+        const deliveryInfo = await DeliveryInfo.findById(deliveryId);
+
+        return response.status(200).send(deliveryInfo);
+    }catch(error){
+        console.log(error.message);
+        response.status(500).send({ message: error.message });
+    }
+})
+
 //Route for get delivery info
 router.get('/:userId', async (request, response) => {
     try {

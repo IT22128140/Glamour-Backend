@@ -34,7 +34,7 @@ const orderSchema = new mongoose.Schema(
                 },
             },
         ],
-        deliveryInfo: [
+        deliveryInfo: 
             {
                 firstName: {
                     type: String,
@@ -69,7 +69,6 @@ const orderSchema = new mongoose.Schema(
                     required: true,
                 },
             },
-        ],
         total: {
             type: Number,
             required: true,
