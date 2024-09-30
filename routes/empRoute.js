@@ -35,7 +35,6 @@ router.put("/:id", async (request, response) => {
     try {
         const { id } = request.params;
 
-        // Find the employee by ID
         const emp = await Emp.findById(id);
         if (!emp) {
             return response.status(404).send({ message: "Employee not found" });

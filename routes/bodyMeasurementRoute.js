@@ -3,6 +3,31 @@ import { Measurement } from "../models/bodyMeasurementModel.js";
 
 const router = exprress.Router();
 
+// Route to retrieve model sizes details within a date range
+router.get('/range', async (req, res) => {
+  try {
+    const { startDate, endDate } = req.query;
+
+    // Check if both startDate and endDate are provided and valid
+    if (!startDate || !endDate || isNaN(new Date(startDate)) || isNaN(new Date(endDate))) {
+      return res.status(400).json({ message: 'Invalid or missing date range' });
+    }
+
+    const models = await Measurement.find({
+      createdAt: {
+        $gte: new Date(startDate),
+        $lte: new Date(endDate),
+      },
+    });
+
+    res.status(200).json(models);
+  } catch (error) {
+    console.error('Error retrieving model details:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
 // Calculate top sizes
 const calculateTopSize = (gender, bust, waist, hip, neckBase, shoulderWidth) => {
   let size = 'Out of range';
