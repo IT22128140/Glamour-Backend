@@ -68,15 +68,15 @@ const calculatePantSize = (gender, waist, hip) => {
 
   if (gender.toLowerCase() === 'female') {
     // For women
-    if (waist >= 24 && waist <= 25 && hip >= 34.5 && hip <= 35.5) {
+    if (waist >= 26 && waist <= 28 && hip >= 34.5 && hip <= 35.5) {
         size = 'XS';
-    } else if (waist >= 26 && waist <= 27 && hip >= 36.5 && hip <= 37.5) {
+    } else if (waist >= 29 && waist <= 33 && hip >= 36.5 && hip <= 37.5) {
         size = 'S';
-    } else if (waist >= 28 && waist <= 29 && hip >= 38.5 && hip <= 39.5) {
+    } else if (waist >= 34 && waist <= 37 && hip >= 38.5 && hip <= 39.5) {
         size = 'M';
-    } else if (waist >= 30 && waist <= 32 && hip >= 41 && hip <= 42.5) {
+    } else if (waist >= 38 && waist <= 42 && hip >= 41 && hip <= 42.5) {
         size = 'L';
-    } else if (waist >= 33.5 && waist <= 35 && hip >= 44 && hip <= 45.5) {
+    } else if (waist >= 44 && waist <= 46 && hip >= 44 && hip <= 45.5) {
         size = 'XL';
     }
 } else if (gender.toLowerCase() === 'male') {
