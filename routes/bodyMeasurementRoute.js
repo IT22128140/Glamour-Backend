@@ -34,15 +34,15 @@ const calculateTopSize = (gender, bust, waist, hip, neckBase, shoulderWidth) => 
 
   if (gender.toLowerCase() === 'female') {
     // For women
-    if (bust >= 32 && bust <= 33 && waist >= 24 && waist <= 25 && hip >= 34.5 && hip <= 35.5) {
+    if (bust >= 32 && bust <= 33 && waist >= 26 && waist <= 28 && hip >= 34.5 && hip <= 35.5) {
         size = 'XS';
-    } else if (bust >= 34 && bust <= 35 && waist >= 26 && waist <= 27 && hip >= 36 && hip <= 37) {
+    } else if (bust >= 34 && bust <= 35 && waist >= 29 && waist <= 33 && hip >= 36 && hip <= 37) {
         size = 'S';
     } else if (bust >= 36 && bust <= 37 && waist >= 28 && waist <= 29 && hip >= 38.5 && hip <= 39.5) {
         size = 'M';
-    } else if (bust >= 38.5 && bust <= 40 && waist >= 30.5 && waist <= 32 && hip >= 41 && hip <= 42.5) {
+    } else if (bust >= 38.5 && bust <= 40 && waist >= 38 && waist <= 42 && hip >= 41 && hip <= 42.5) {
         size = 'L';
-    } else if (bust >= 41.5 && bust <= 43 && waist >= 33.5 && waist <= 35 && hip >= 44 && hip <= 45.5) {
+    } else if (bust >= 41.5 && bust <= 43 && waist >= 44 && waist <= 46 && hip >= 44 && hip <= 45.5) {
         size = 'XL';
     }
 } else if (gender.toLowerCase() === 'male') {
@@ -51,7 +51,7 @@ const calculateTopSize = (gender, bust, waist, hip, neckBase, shoulderWidth) => 
         size = 'XS';
     } else if (bust >= 38 && bust <= 40 && waist >= 32 && waist <= 34 && neckBase >= 15.16 && neckBase <= 15.75 && shoulderWidth >= 16.93 && shoulderWidth <= 17.52) {
         size = 'S';
-    } else if (bust >= 41 && bust <= 44 && waist >= 36 && waist <= 38 && neckBase >= 15.94 && neckBase <= 16.54 && shoulderWidth >= 17.52 && shoulderWidth <= 18.11) {
+    } else if (bust >= 41 && bust <= 44 && waist >= 34 && waist <= 37 && neckBase >= 15.94 && neckBase <= 16.54 && shoulderWidth >= 17.52 && shoulderWidth <= 18.11) {
         size = 'M';
     } else if (bust >= 46 && bust <= 48 && waist >= 40 && waist <= 42 && neckBase >= 16.54 && neckBase <= 17.32 && shoulderWidth >= 18.11 && shoulderWidth <= 18.70) {
         size = 'L';
