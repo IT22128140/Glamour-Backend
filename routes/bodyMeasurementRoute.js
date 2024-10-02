@@ -38,7 +38,7 @@ const calculateTopSize = (gender, bust, waist, hip, neckBase, shoulderWidth) => 
         size = 'XS';
     } else if (bust >= 34 && bust <= 35 && waist >= 29 && waist <= 33 && hip >= 36 && hip <= 37) {
         size = 'S';
-    } else if (bust >= 36 && bust <= 37 && waist >= 28 && waist <= 29 && hip >= 38.5 && hip <= 39.5) {
+    } else if (bust >= 36 && bust <= 37 && waist >= 34 && waist <= 37 && hip >= 38.5 && hip <= 39.5) {
         size = 'M';
     } else if (bust >= 38.5 && bust <= 40 && waist >= 38 && waist <= 42 && hip >= 41 && hip <= 42.5) {
         size = 'L';
