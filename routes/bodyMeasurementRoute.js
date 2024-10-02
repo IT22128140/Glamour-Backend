@@ -89,7 +89,7 @@ const calculatePantSize = (gender, waist, hip) => {
         size = 'M';
     } else if (waist >= 35 && waist <= 38 && hip >= 41 && hip <= 44) {
         size = 'L';
-    } else if (waist >= 38 && waist <= 41 && hip >= 44 && hip <= 47) {
+    } else if (waist >= 38 && waist <= 46 && hip >= 44 && hip <= 47) {
         size = 'XL';
     }
 }
